@@ -123,7 +123,7 @@ if __name__ == '__main__':
         lr = LogisticRegression(n_jobs=2, solver='saga', random_state=seed*13, penalty='elasticnet', l1_ratio=0,
                                 class_weight='balanced', max_iter=2000)
         mlp = MLPClassifier(random_state=seed*13, max_iter=2000, early_stopping=True)
-        print('基模型分类效果：', compute_metrics(svm, train, test))
+        print(compute_metrics(svm, train, test))
 
         paras_rf = [{'n_estimators': np.arange(50, 400, 50)},
                     {'max_depth': np.arange(5, 20, 2), 'min_samples_split': np.arange(0.01, 0.02, 0.002)},
@@ -146,8 +146,8 @@ if __name__ == '__main__':
         paras = dict.fromkeys(keys)
         for key in keys:
             paras[key] = clf.get_params()[key]
-        print('调参后模型参数：', paras)
-        print('调参后的分类效果：', metric_adjust)
+        print('tuned model parameters：', paras)
+        print('tuned model metrics：', metric_adjust)
         # plot_learning_curve(clf, train)
 
         res.loc[seed]['params'] = paras
