@@ -88,7 +88,6 @@ if __name__ == '__main__':
     metrics_QL, true_prob_ql, tprs = compute_metrics(clf, train, test)
     print('QL：', metrics_QL)
 
-    '''============================ 决策树可视化输出 ============================'''
     clf.fit(data.values[:, 1:], data.values[:, 0].astype(np.uint8))
 
     dot_data = export_graphviz(clf, out_file='../figs/tree.dot',
